@@ -7,10 +7,7 @@ const btwGeneratorAndArrow = /function\*(.+?)=>/gi;
 const enforceParenthesis = (m, p) => (/\(/.test(p) && /\)/.test(p)) ? m : m.replace(p, ` (${p.trim()}) `);
 
 const afterArrow = /=>(.+)/gi;
-function enforceBrackets(m, p) {
-	p = p.trim();
-	return (/{/.test(p) && /}/.test(p)) ? p : `{return ${p}}`;
-}
+const enforceBrackets = (_, p) => (p = p.trim()) && /{/.test(p) ? p : `{return ${p}}`;
 
 module.exports = str =>
 	str

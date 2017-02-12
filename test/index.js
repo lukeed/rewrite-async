@@ -4,7 +4,7 @@ const fn = require('../');
 test('async function () {}', t => {
 	const out = 'async function () {}';
 	const nxt = 'function* () {}';
-	t.is(fn(out), nxt, `--> ${nxt}`);
+	t.is(fn(out), nxt);
 });
 
 test('async function foo() {}', t => {
@@ -178,5 +178,41 @@ test('var foo = async function (one) {}', t => {
 test('var foo = async function() {', t => {
 	const out = 'var foo = async function() {';
 	const nxt = 'var foo = function*() {';
+	t.is(fn(out), nxt);
+});
+
+test('var foo = async one => {', t => {
+	const out = 'var foo = async one => {';
+	const nxt = 'var foo = function* (one) {';
+	t.is(fn(out), nxt);
+});
+
+test('var foo = async (one) => {', t => {
+	const out = 'var foo = async (one) => {';
+	const nxt = 'var foo = function* (one) {';
+	t.is(fn(out), nxt);
+});
+
+test('var foo = async foo(one, two) {}', t => {
+	const out = 'var foo = async foo(one, two) {}';
+	const nxt = 'var foo = function* foo(one, two) {}';
+	t.is(fn(out), nxt);
+});
+
+test('async foo(one, two) {', t => {
+	const out = 'async foo(one, two) {';
+	const nxt = 'function* foo(one, two) {';
+	t.is(fn(out), nxt);
+});
+
+test('var foo = async one => await one()', t => {
+	const out = 'var foo = async one => await one()';
+	const nxt = 'var foo = function* (one) {return yield one()}';
+	t.is(fn(out), nxt);
+});
+
+test('async foo (one, two) => {await one(two)}', t => {
+	const out = 'async foo (one, two) => {await one(two)}';
+	const nxt = 'function* foo (one, two) {yield one(two)}';
 	t.is(fn(out), nxt);
 });
