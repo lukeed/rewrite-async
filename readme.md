@@ -1,12 +1,14 @@
 # rewrite-async [![Build Status](https://travis-ci.org/lukeed/rewrite-async.svg?branch=master)](https://travis-ci.org/lukeed/rewrite-async)
 
-> Rewrite async functions as generators; via RegExp;
+> Rewrite async functions as generators; via RegExp
 
-Unlike [`async-to-gen`](), this does not register a runtime. Instead, the "transpiling" occurs only as needed.
+Unlike [`async-to-gen`](https://www.npmjs.com/package/async-to-gen), this does not register a runtime. Instead, the "transpiling" occurs only as needed.
 
 Also, this is _only_ executes a **string conversion**! You will have to look to other modules in order to execute the returned string.
 
 > **Note:** Although `eval()` will work, it's generally (and strongly) not recommended.
+
+Built with [`Bluebird.coroutine`](http://bluebirdjs.com/docs/api/promise.coroutine.html) in mind. :wink:
 
 ## Install
 
