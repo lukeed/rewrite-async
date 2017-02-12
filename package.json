@@ -28,6 +28,9 @@
     "xo": "^0.16.0"
   },
   "xo": {
-    "esnext": true
+    "esnext": true,
+    "rules": {
+      "no-div-regex": 0
+    }
   }
 }
