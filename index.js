@@ -1,10 +1,20 @@
 'use strict';
-module.exports = (input, opts) => {
-	if (typeof input !== 'string') {
-		throw new TypeError(`Expected a string, got ${typeof input}`);
-	}
 
-	opts = opts || {};
+const fn = 'function*';
+const asyncOrAsyncFunc = /async((\s)?function)?/gi;
 
-	return input + ' & ' + (opts.postfix || 'rainbows');
-};
+const btwGeneratorAndArrow = /function\*(.+?)=>/gi;
+const enforceParenthesis = (m, p) => (/\(/.test(p) && /\)/.test(p)) ? m : m.replace(p, ` (${p.trim()}) `);
+
+const afterArrow = /=>(.+)/gi;
+function enforceBrackets(m, p) {
+	p = p.trim();
+	return (/{/.test(p) && /}/.test(p)) ? p : `{return ${p}}`;
+}
+
+module.exports = str =>
+	str
+	.replace('await', 'yield')
+	.replace(asyncOrAsyncFunc, fn)
+	.replace(btwGeneratorAndArrow, enforceParenthesis)
+	.replace(afterArrow, enforceBrackets);
