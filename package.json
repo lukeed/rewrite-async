@@ -1,7 +1,7 @@
 {
   "name": "rewrite-async",
   "version": "0.0.0",
-  "description": "Rewrite async functions as generators; via RegExp&#34;",
+  "description": "Rewrite async functions as generators; via RegExp",
   "license": "MIT",
   "repository": "lukeed/rewrite-async",
   "author": {
@@ -30,6 +30,7 @@
   "xo": {
     "esnext": true,
     "rules": {
+      "no-return-assign": 0,
       "no-div-regex": 0
     }
   }
