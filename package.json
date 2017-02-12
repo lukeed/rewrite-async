@@ -1,6 +1,6 @@
 {
   "name": "rewrite-async",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Rewrite async functions as generators; via RegExp",
   "license": "MIT",
   "repository": "lukeed/rewrite-async",
