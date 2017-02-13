@@ -11,7 +11,7 @@ const enforceBrackets = (_, p) => (p = p.trim()) && /{/.test(p) ? p : `{return $
 
 module.exports = str =>
 	str
-	.replace('await', 'yield')
+	.replace(/await/g, 'yield')
 	.replace(asyncOrAsyncFunc, fn)
 	.replace(btwGeneratorAndArrow, enforceParenthesis)
 	.replace(afterArrow, enforceBrackets);
